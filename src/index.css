@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +10,31 @@
   vertical-align: baseline;
 }
 
+/* General Styles */
 body {
   font-family: "JetBrains Mono", monospace;
   background-color: #18171f;
+}
+
+/* Slider styles override */
+.range-slider {
+  border-radius: 0px !important;
+  background: #18171f !important;
+}
+
+.range-slider .range-slider__thumb {
+  background: #e6e5ea !important;
+}
+
+.range-slider .range-slider__thumb:hover {
+  background: #18171f !important;
+  border: 2px solid #a4ffaf;
+}
+
+.single-thumb .range-slider__thumb[data-lower] {
+  width: 0;
+}
+
+.range-slider .range-slider__range {
+  background: #a4ffaf !important;
 }
