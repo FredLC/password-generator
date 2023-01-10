@@ -6,6 +6,12 @@ import "react-range-slider-input/dist/style.css";
 function App() {
   const [password, setPassword] = useState("");
   const [characterLength, setCharacterLength] = useState(10);
+  const [conditions, setConditions] = useState({
+    uppercase: false,
+    lowercase: true,
+    numbers: false,
+    symbols: false,
+  });
 
   function handleInputChange(e) {
     setPassword(e.target.value);
@@ -13,6 +19,14 @@ function App() {
 
   function handleSliderInputChange(sliderValueArr) {
     setCharacterLength(sliderValueArr[1]);
+  }
+
+  function handleCheckboxInputChange(e) {
+    const checked = e.target.checked;
+    setConditions({
+      ...conditions,
+      [e.target.name]: checked,
+    });
   }
 
   return (
@@ -47,6 +61,26 @@ function App() {
             rangeSlideDisabled={true}
             onInput={handleSliderInputChange}
           />
+          {Object.entries(conditions).map(([condition, checked], idx) => (
+            <div className="mt-8" key={idx}>
+              <input
+                name={condition}
+                className="accent-[#A4FFAF]"
+                type="checkbox"
+                onChange={handleCheckboxInputChange}
+                checked={checked}
+              />
+              <label
+                htmlFor={condition}
+                className="text-[#E6E5EA] ml-6 text-lg"
+              >
+                Include {condition.charAt(0).toUpperCase() + condition.slice(1)}{" "}
+                {condition === "uppercase" || condition === "lowercase"
+                  ? "Letters"
+                  : ""}
+              </label>
+            </div>
+          ))}
         </div>
       </form>
     </div>
