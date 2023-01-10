@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CopyButton from "./CopyButton";
 import RangeSlider from "react-range-slider-input";
+import PasswordStrength from "./PasswordStrength";
 import "react-range-slider-input/dist/style.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     numbers: false,
     symbols: false,
   });
+  const [passwordStrength, setPasswordStrength] = useState("tooWeak");
 
   function handleInputChange(e) {
     setPassword(e.target.value);
@@ -28,6 +30,30 @@ function App() {
       [e.target.name]: checked,
     });
   }
+
+  function checkPasswordStrength(length, conditions) {
+    const { uppercase, lowercase, numbers, symbols } = conditions;
+
+    if (uppercase && lowercase && numbers && symbols) {
+      setPasswordStrength("strong");
+    } else if (uppercase && lowercase && numbers) {
+      setPasswordStrength("medium");
+    } else if (uppercase && lowercase) {
+      setPasswordStrength("weak");
+    } else {
+      setPasswordStrength("tooWeak");
+    }
+
+    if (length < 6) {
+      setPasswordStrength("tooWeak");
+    } else if (length < 8) {
+      setPasswordStrength("weak");
+    }
+  }
+
+  useEffect(() => {
+    checkPasswordStrength(characterLength, conditions);
+  }, [characterLength, conditions]);
 
   return (
     <div className="h-screen flex justify-center items-center flex-col">
@@ -81,6 +107,11 @@ function App() {
               </label>
             </div>
           ))}
+
+          <div className="bg-[#18171F] flex items-center justify-between mt-8 px-8 py-6">
+            <span className="text-[#817D92] text-lg">STRENGTH</span>
+            <PasswordStrength passwordStrength={passwordStrength} />
+          </div>
         </div>
       </form>
     </div>
