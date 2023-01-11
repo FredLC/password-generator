@@ -38,3 +38,8 @@ body {
 .range-slider .range-slider__range {
   background: #a4ffaf !important;
 }
+
+/* Button hover */
+button:hover svg path {
+  fill: #a4ffaf;
+}

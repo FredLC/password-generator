@@ -52,6 +52,11 @@ function App() {
     }
   }
 
+  function handleGeneratePassword(e) {
+    e.preventDefault();
+    setPassword(generatePassword(characterLength, conditions));
+  }
+
   useEffect(() => {
     checkPasswordStrength(characterLength, conditions);
   }, [characterLength, conditions]);
@@ -65,6 +70,7 @@ function App() {
             onChange={handleInputChange}
             placeholder="P4$5W0rD!"
             className="bg-[#24232C] w-full h-20 py-5 pl-7 text-3xl text-[#E6E5EA] focus:outline-none placeholder:opacity-25"
+            value={password}
           />
           <CopyButton copyText={password} />
         </div>
@@ -113,6 +119,21 @@ function App() {
             <span className="text-[#817D92] text-lg">STRENGTH</span>
             <PasswordStrength passwordStrength={passwordStrength} />
           </div>
+
+          <button
+            className="flex items-center justify-center bg-[#A4FFAF] w-full h-16 mt-8 text-[#24232C] text-lg hover:bg-transparent hover:border-2 hover:border-[#A4FFAF] hover:text-[#A4FFAF] cursor-pointer"
+            onClick={handleGeneratePassword}
+          >
+            GENERATE
+            <div className="ml-6">
+              <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill="#24232C"
+                  d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       </form>
     </div>
