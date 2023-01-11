@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CopyButton from "./CopyButton";
 import RangeSlider from "react-range-slider-input";
 import PasswordStrength from "./PasswordStrength";
+import generatePassword from "./PasswordGenerator";
 import "react-range-slider-input/dist/style.css";
 
 function App() {
