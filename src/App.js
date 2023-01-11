@@ -95,10 +95,10 @@ function App() {
             onInput={handleSliderInputChange}
           />
           {Object.entries(conditions).map(([condition, checked], idx) => (
-            <div className="mt-8" key={idx}>
+            <div className="mt-8 flex items-center" key={idx}>
               <input
                 name={condition}
-                className="accent-[#A4FFAF]"
+                className="grid place-content-center appearance-none bg-transparent border-2 border-[#E6E5EA] w-5 h-5 checked:bg-[#a4ffaf] checked:border-none"
                 type="checkbox"
                 onChange={handleCheckboxInputChange}
                 checked={checked}
@@ -115,7 +115,7 @@ function App() {
             </div>
           ))}
 
-          <div className="bg-[#18171F] flex items-center justify-between mt-8 px-8 py-6">
+          <div className="bg-[#18171F] flex items-center md:flex-row flex-col justify-between mt-8 md:px-8 md:py-6 p-4">
             <span className="text-[#817D92] text-lg">STRENGTH</span>
             <PasswordStrength passwordStrength={passwordStrength} />
           </div>
