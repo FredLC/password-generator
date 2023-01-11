@@ -13,7 +13,7 @@ function generatePassword(length, conditions) {
     } else if (uppercase && lowercase) {
       characterIndex = Math.floor(Math.random() * 52);
     } else {
-      characterIndex = Math.floor(Math.random() * 27);
+      characterIndex = Math.floor(Math.random() * 26);
     }
     const character = characters[characterIndex];
     generatedPassword += character;
